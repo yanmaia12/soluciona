@@ -1,0 +1,33 @@
+# --- Ficheiros do Sistema (Mac/Windows) ---
+.DS_Store
+Thumbs.db
+
+# --- Maven (Lixo de Compilação) ---
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# --- IntelliJ IDEA ---
+.idea
+*.iws
+*.iml
+*.ipr
+
+# --- VS Code / Outros Editores ---
+.vscode/
+.settings/
+.classpath
+.project
+.factorypath
+
+# --- Logs e Dados ---
+*.log
+*.gz
+
+# --- Segurança (CRUCIAL) ---
+# Ignora ficheiros de variáveis de ambiente e chaves
+.env
+.env.local
+firebase-service-account.json
+src/main/resources/application.properties
