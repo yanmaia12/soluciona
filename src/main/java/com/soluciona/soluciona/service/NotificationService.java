@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class NotificationService {
-    @Autowired
+    @Autowired(required = false)
     private FirebaseApp firebaseApp;
     public void enviarNotificacao(String fcmToken, String titulo, String corpo) {
 

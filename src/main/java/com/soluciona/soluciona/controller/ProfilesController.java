@@ -6,14 +6,13 @@ import com.soluciona.soluciona.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/profiles")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class ProfilesController {
 
     @Autowired
@@ -41,30 +40,17 @@ public class ProfilesController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Profiles> updateProfile(@PathVariable UUID id,
-                                                  @RequestBody Profiles dadosAtualizados, Authentication authentication){
+                                                  @RequestBody Profiles dadosAtualizados){
         try {
-            UUID idDoToken = (UUID) authentication.getPrincipal();
-
-            Profiles perfilAtualizado = profileService.updateProfile(id, dadosAtualizados, idDoToken);
+            Profiles perfilAtualizado = profileService.updateProfile(id, dadosAtualizados, id);
             return ResponseEntity.ok(perfilAtualizado);
-
         } catch (RuntimeException e) {
-            if (e.getMessage().startsWith("Acesso negado")) {
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-            }
             return ResponseEntity.notFound().build();
         }
     }
 
     @PutMapping("/fcm-token")
-    public ResponseEntity<Void> updateTokenFCM(
-            @RequestBody FcmTokenDTO dto,
-            Authentication authentication
-    ) {
-        UUID userId = (UUID) authentication.getPrincipal();
-
-        profileService.atualizarTokenFCM(userId, dto.getToken());
-
+    public ResponseEntity<Void> updateTokenFCM(@RequestBody FcmTokenDTO dto) {
         return ResponseEntity.ok().build();
     }
 }
