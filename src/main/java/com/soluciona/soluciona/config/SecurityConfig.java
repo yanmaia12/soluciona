@@ -32,12 +32,12 @@ public class SecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
+
                         .requestMatchers(HttpMethod.POST, "/api/profiles").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/profiles/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/services/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/chat").permitAll()
-                        .anyRequest().authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/profiles/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/profiles/**").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/services").authenticated()
@@ -45,6 +45,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/services/**").authenticated()
                         .requestMatchers("/api/requests/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/categories/**").authenticated()
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
