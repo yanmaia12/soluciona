@@ -22,7 +22,19 @@ public class ChatService {
     public String getAIResponse(String userMessage) {
         String finalUrl = apiUrl + apiKey;
 
-        GeminiRequestDTO.Part part = new GeminiRequestDTO.Part(userMessage);
+        String contexto = """
+            Você é o assistente virtual oficial da plataforma 'Soluciona'.
+            O Soluciona é um aplicativo que conecta clientes a prestadores de serviços domésticos (limpeza, obras, aulas, etc).
+            Regras:
+            1. Seja educado, útil e vá direto ao ponto.
+            2. Se perguntarem preços, diga que depende do prestador.
+            3. Incentive o usuário a navegar nas categorias do app.
+            4. Responda sempre em Português de Portugal.
+            
+            Pergunta do usuário: 
+            """ + userMessage;
+
+        GeminiRequestDTO.Part part = new GeminiRequestDTO.Part(contexto);
         GeminiRequestDTO.Content content = new GeminiRequestDTO.Content(Collections.singletonList(part));
         GeminiRequestDTO request = new GeminiRequestDTO(Collections.singletonList(content));
 

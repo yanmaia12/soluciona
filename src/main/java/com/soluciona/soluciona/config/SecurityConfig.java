@@ -36,6 +36,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/profiles/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/services/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/chat").permitAll()
+                        .anyRequest().authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/profiles/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/profiles/**").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/services").authenticated()
