@@ -1,36 +1,33 @@
 package com.soluciona.soluciona.service;
 
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.Message;
 import com.google.firebase.messaging.Notification;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class NotificationService {
-    @Autowired(required = false)
-    private FirebaseApp firebaseApp;
-    public void enviarNotificacao(String fcmToken, String titulo, String corpo) {
 
-        if (fcmToken == null || fcmToken.isEmpty()) {
+    public void enviarNotificacao(String tokenDestino, String titulo, String corpo) {
+        if (tokenDestino == null || tokenDestino.isEmpty()) {
+            System.out.println("Erro: Tentativa de enviar notificação sem token.");
             return;
         }
 
         try {
             Message message = Message.builder()
-                    .setToken(fcmToken)
+                    .setToken(tokenDestino)
                     .setNotification(Notification.builder()
                             .setTitle(titulo)
                             .setBody(corpo)
                             .build())
                     .build();
 
-            FirebaseMessaging.getInstance().send(message);
-            System.out.println("Notificação enviada: " + titulo);
+            String response = FirebaseMessaging.getInstance().send(message);
+            System.out.println("Notificação enviada com sucesso: " + response);
 
         } catch (Exception e) {
-            System.err.println("Erro ao enviar notificação: " + e.getMessage());
+            System.err.println("Erro ao enviar notificação FCM: " + e.getMessage());
         }
     }
 }

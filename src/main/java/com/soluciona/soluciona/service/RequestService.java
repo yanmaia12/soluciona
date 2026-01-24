@@ -113,4 +113,8 @@ public class RequestService {
 
         return pedidoSalvo;
     }
+
+    public void deleteRequest(Long id) {
+        requestsRepository.deleteById(id);
+    }
 }

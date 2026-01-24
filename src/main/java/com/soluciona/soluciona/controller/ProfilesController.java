@@ -6,6 +6,7 @@ import com.soluciona.soluciona.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -50,7 +51,15 @@ public class ProfilesController {
     }
 
     @PutMapping("/fcm-token")
-    public ResponseEntity<Void> updateTokenFCM(@RequestBody FcmTokenDTO dto) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> updateTokenFCM(@RequestBody FcmTokenDTO dto, Authentication authentication) {
+        try {
+            UUID userId = (UUID) authentication.getPrincipal();
+
+            profileService.atualizarTokenFCM(userId, dto.getToken());
+
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
 }

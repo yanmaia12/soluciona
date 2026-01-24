@@ -1,0 +1,101 @@
+[33mcommit 3788571e7d09b61ad8a2d2d920e2ec51bf9b9477[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Thu Jan 22 16:22:47 2026 +0000
+
+    profiles
+
+[33mcommit c3d8bf66d0988ce61ba1decee4570a9d9fd76b08[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Thu Jan 22 13:10:42 2026 +0000
+
+    resolvendo os controller
+
+[33mcommit bbf3e2c0bfdc0c592bd0c567e75572e49aea7c27[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Wed Jan 21 21:34:34 2026 +0000
+
+    corrigindo erro nas notificações
+
+[33mcommit 43644ab764e53eadd407aa554d5db03484dfa26b[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Wed Jan 21 21:32:40 2026 +0000
+
+    corrigindo erro nas notificações
+
+[33mcommit a02b2536bb744f3594e246bf69d02c701229a868[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Wed Jan 21 21:28:16 2026 +0000
+
+    Notificações
+
+[33mcommit 30b1c9ef5b74f66979ca7cb63dfd76e87bed1574[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Wed Jan 21 20:24:48 2026 +0000
+
+    resolvendo a segurança
+
+[33mcommit a038ffa710a4815eb1f5d33629241a511ac1f4a9[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Wed Jan 14 16:37:58 2026 +0000
+
+    mais erros
+
+[33mcommit 3f0e22d044f3cd78eccaf6262f80946ef09f4013[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Wed Jan 14 15:55:10 2026 +0000
+
+    corrigindo erros
+
+[33mcommit 5c5142ec27440f793eca87e05c2e254cfa1c749b[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Wed Jan 14 15:22:36 2026 +0000
+
+    chatbot da gemini
+
+[33mcommit 930c9fe132f452898e33ceaade43ea00ef10bb1d[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Thu Dec 18 05:10:55 2025 +0000
+
+    vamo la
+
+[33mcommit 7baef2d289be9d994bc6630a66110d5abed79176[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Thu Dec 18 04:57:16 2025 +0000
+
+    reset
+
+[33mcommit c10b587a1d55458e2e65e292631cd00f207fc4b9[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Wed Dec 17 22:09:59 2025 +0000
+
+    -fix: firebase credentials
+
+[33mcommit 9a15138cfed64d70fd3c330164cebf8c68cbd1d6[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Wed Dec 17 21:33:34 2025 +0000
+
+    -fix: ajuste final java 17 e dockerfile
+
+[33mcommit 32c36c0774460a8231d05a7cc6e710e2802172d8[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Thu Dec 11 21:44:40 2025 +0000
+
+    fix: usando java 17
+
+[33mcommit 408a7ac84a67f8f75a2235d2422be4b1ea52385b[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Thu Dec 11 21:18:18 2025 +0000
+
+    fix: atualizar imagem docker para eclipse-temurin
+
+[33mcommit 61f4057b4dd3d9de042799736f63df6416c7f38c[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Thu Dec 11 21:08:54 2025 +0000
+
+    feat: adicionando Dockerfile para deploy
+
+[33mcommit ccdbe216266ea0d1dac44dd1488fa01ec1bc9e4f[m
+Author: Yan Maia <yandantasmaia12@gmail.com>
+Date:   Thu Dec 11 20:03:49 2025 +0000
+
+    feat: subindo o projeto quase completo, denovo
