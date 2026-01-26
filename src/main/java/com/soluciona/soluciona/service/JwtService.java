@@ -16,9 +16,19 @@ public class JwtService {
     @Value("${supabase.jwt.secret}")
     private String SUPABASE_JWT_SECRET;
 
-    public UUID extractUserId(String token){
-        String subject = extractClaim(token, Claims::getSubject);
-        return UUID.fromString(subject);
+    public UUID extractUserId(String token) {
+        try {
+            String subject = extractClaim(token, Claims::getSubject);
+
+            if (subject == null || subject.isEmpty()) {
+                throw new RuntimeException("Token sem subject (user ID)");
+            }
+            subject = subject.trim();
+            return UUID.fromString(subject);
+
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException("ID do usuário não é um UUID válido: " + e.getMessage());
+        }
     }
 
     public boolean isTokenValid(String token){

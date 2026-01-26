@@ -48,7 +48,7 @@ public class ServicePostService {
         novoAnuncio.setPhotos(dto.getPhotos());
         novoAnuncio.setLatitude(dto.getLatitude());
         novoAnuncio.setLongitude(dto.getLongitude());
-        novoAnuncio.setFulLAddress(dto.getFullAddress());
+        novoAnuncio.setFullAddress(dto.getFullAddress());
 
         return servicePostRepository.save(novoAnuncio);
     }
@@ -85,7 +85,7 @@ public class ServicePostService {
 
         anuncioOriginal.setLatitude(dto.getLatitude());
         anuncioOriginal.setLongitude(dto.getLongitude());
-        anuncioOriginal.setFulLAddress(dto.getFullAddress());
+        anuncioOriginal.setFullAddress(dto.getFullAddress());
 
         return servicePostRepository.save(anuncioOriginal);
     }
