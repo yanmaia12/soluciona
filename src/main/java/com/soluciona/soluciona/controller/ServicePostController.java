@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import com.soluciona.soluciona.dto.GeoProviderDTO;
+import java.util.HashMap;
+import java.util.Map;
 
 import java.util.List;
 import java.util.UUID;
@@ -99,5 +102,22 @@ public class ServicePostController {
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<Map<String, Object>> searchNearby(
+            @RequestParam Double lat,
+            @RequestParam Double lng,
+            @RequestParam(defaultValue = "10") Double radius) {
+
+        List<GeoProviderDTO> results = servicePostService.findNearbyServices(lat, lng, radius);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("location_searched", lat + ", " + lng);
+        response.put("radius_km", radius);
+        response.put("total_found", results.size());
+        response.put("results", results);
+
+        return ResponseEntity.ok(response);
     }
 }
