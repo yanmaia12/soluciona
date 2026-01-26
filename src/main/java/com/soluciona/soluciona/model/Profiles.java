@@ -39,7 +39,7 @@ public class Profiles {
     private Double longitude;
 
     @Column(name = "full_address")
-    private String fulLAddress;
+    private String fullAddress;
 
     @Column(name = "fcm_token")
     private String fcmToken;

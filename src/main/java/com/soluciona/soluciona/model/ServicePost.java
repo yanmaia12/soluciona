@@ -52,7 +52,7 @@ public class ServicePost {
     private Double longitude;
 
     @Column(name = "full_address")
-    private String fulLAddress;
+    private String fullAddress;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)

@@ -15,14 +15,14 @@ import java.util.UUID;
 public class ProfileSyncService {
 
     @Autowired
-    private ProfilesRepository profileRepository;
+    private ProfilesRepository profilesRepository;
 
     @Value("${supabase.jwt.secret}")
     private String jwtSecret;
 
     @Transactional
     public Profiles ensureProfileExists(UUID userId, String jwtToken) {
-        return profileRepository.findById(userId)
+        return profilesRepository.findById(userId)
                 .orElseGet(() -> createProfileFromToken(userId, jwtToken));
     }
 
@@ -46,7 +46,7 @@ public class ProfileSyncService {
             }
             newProfile.setName(name != null ? name : "Utilizador");
 
-            return profileRepository.save(newProfile);
+            return profilesRepository.save(newProfile);
 
         } catch (Exception e) {
             throw new RuntimeException("Erro ao criar perfil a partir do token: " + e.getMessage());

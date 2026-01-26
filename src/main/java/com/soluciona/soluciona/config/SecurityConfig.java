@@ -32,22 +32,21 @@ public class SecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-
-                        .requestMatchers(HttpMethod.POST, "/api/profiles").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/services/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/profiles/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/services/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/chat").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/reviews/**").permitAll()
+
+                        .requestMatchers(HttpMethod.POST, "/api/profiles").permitAll() // Permite criar perfil
                         .requestMatchers(HttpMethod.PUT, "/api/profiles/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/profiles/**").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/services").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/services/**").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/api/services/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/services/**").authenticated()
                         .requestMatchers("/api/requests/**").authenticated()
-                        .requestMatchers(HttpMethod.DELETE, "/api/categories/**").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/api/reviews/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/reviews").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/profiles/fcm-token").authenticated()
 
                         .anyRequest().authenticated()
                 )

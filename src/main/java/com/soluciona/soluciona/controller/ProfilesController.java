@@ -2,6 +2,7 @@ package com.soluciona.soluciona.controller;
 
 import com.soluciona.soluciona.dto.FcmTokenDTO;
 import com.soluciona.soluciona.model.Profiles;
+import com.soluciona.soluciona.repository.ProfilesRepository;
 import com.soluciona.soluciona.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,11 +20,29 @@ public class ProfilesController {
     @Autowired
     private ProfileService profileService;
 
+    @Autowired
+    private ProfilesRepository profilesRepository;
+
     @PostMapping
     public ResponseEntity<Profiles> createProfile(@RequestBody Profiles profiles){
         try {
+            if (profilesRepository.existsById(profiles.getId())) {
+
+                Profiles existing = profilesRepository.findById(profiles.getId()).get();
+                existing.setName(profiles.getName());
+                existing.setPhoneNumber(profiles.getPhoneNumber());
+                existing.setProfilePicture(profiles.getProfilePicture());
+                existing.setDefaultLocation(profiles.getDefaultLocation());
+                existing.setLatitude(profiles.getLatitude());
+                existing.setLongitude(profiles.getLongitude());
+                existing.setFullAddress(profiles.getFullAddress());
+
+                return ResponseEntity.ok(profilesRepository.save(existing));
+            }
+
             Profiles newProfile = profileService.createProfile(profiles);
             return new ResponseEntity<>(newProfile, HttpStatus.CREATED);
+
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
