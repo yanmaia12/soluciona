@@ -110,23 +110,29 @@ public class ServicePostService {
         List<GeoProviderDTO> nearby = new ArrayList<>();
 
         for (ServicePost service : allServices) {
-
             if (service.getLatitude() != null && service.getLongitude() != null) {
 
                 double dist = calculateDistance(latUser, lngUser, service.getLatitude(), service.getLongitude());
 
                 if (dist <= radiusKm) {
-                    String photo = (service.getProfiles() != null) ? service.getProfiles().getProfilePicture() : null;
                     String providerName = (service.getProfiles() != null) ? service.getProfiles().getName() : "Profissional";
-
                     String link = "https://soluciona-frontend.onrender.com/servico/" + service.getId();
+
+                    String photo = null;
+                    if (service.getPhotos() != null && !service.getPhotos().isEmpty()) {
+                        photo = service.getPhotos().get(0);
+                    } else if (service.getProfiles() != null) {
+                        photo = service.getProfiles().getProfilePicture();
+                    }
+
+                    Double rating = 0.0;
 
                     nearby.add(new GeoProviderDTO(
                             service.getId(),
                             providerName,
                             service.getTitle(),
-                            String.format("%.1f km", dist), // Formata: "1.5 km"
-                            5.0,
+                            String.format("%.1f km", dist),
+                            rating,
                             photo,
                             link
                     ));
