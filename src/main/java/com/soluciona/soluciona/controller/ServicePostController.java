@@ -38,18 +38,17 @@ public class ServicePostController {
     }
 
     @PostMapping
-    public ResponseEntity<ServicePost> createService(
-            @RequestBody ServicePostRequestDTO dto,
-            Authentication authentication
-    ) {
+    public ResponseEntity<?> createService(@RequestBody ServicePostRequestDTO dto,
+                                           Authentication authentication) {
         try {
             UUID autorId = (UUID) authentication.getPrincipal();
-
             ServicePost novoAnuncio = servicePostService.createService(dto, autorId);
             return new ResponseEntity<>(novoAnuncio, HttpStatus.CREATED);
 
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", e.getMessage()));
         }
     }
 
